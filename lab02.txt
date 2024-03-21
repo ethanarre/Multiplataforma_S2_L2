@@ -1,0 +1,83 @@
+CURSO: MULTIPLATAFORMA 
+LABORATORIO 02 
+ALUMNO: ETHAN ARREDONDO
+
+-----EJERCICIO 01------
+class MarvelHeroes {
+  String? nombrePila;
+  String? nombrePersonaje;
+  //constructor abreviado con required
+  MarvelHeroes({required this.nombrePila, required this.nombrePersonaje});
+}
+
+void main() {
+  final personaje1 = new MarvelHeroes(nombrePila: "Peter Parker",nombrePersonaje: "Spiderman");
+  
+  print("Hola mi nombre es ${personaje1.nombrePila} pero me conocen como tu amigable vecino ${personaje1.nombrePersonaje}");
+  
+}
+
+-----EJERCICIO 02------
+class DCHeroes{
+  String? nombrePila;
+  String? nombrePersonaje;
+  
+  DCHeroes({required this.nombrePila, required this.nombrePersonaje});
+  
+  DCHeroes.fromDCJson(Map <String,String> json):
+  this.nombrePila = json['nombrePila'] ?? 'No tiene nombre',
+  this.nombrePersonaje = json['nombrePersonaje']?? 'No tiene alias';  
+  
+  @override
+  String toString(){
+    return 'Hola mi nombres ${this.nombrePila} pero me conocen como el caballero de la noche ${this.nombrePersonaje}';
+  }
+}
+
+void main(){
+  final dCJson = {
+    'nombrePila':'BRUCE WAYNE',
+    'nombrePersonaje':'BATMAN'
+  };
+  
+  final mensaje2 = DCHeroes.fromDCJson(dCJson);
+  print(mensaje2.toString());
+}
+
+-----EJERCICIO 03------
+class MarvelHeroes {
+  String? nombrePila; String? nombrePersonaje;
+  MarvelHeroes({required this.nombrePila, required this.nombrePersonaje});
+  MarvelHeroes.fromMarvelJson(Map <String,String> json):
+  this.nombrePila = json['nombrePila'] ?? 'No tiene nombre',
+  this.nombrePersonaje = json['nombrePersonaje']?? 'No tiene alias';  
+  @override
+  String toString(){return 'Hola mi nombres ${this.nombrePila} pero me conocen como el caballero de la noche ${this.nombrePersonaje}';}
+  MarvelHeroes.constructor_adicional({required String nombrePila, required String nombrePersonaje}):
+    nombrePila = nombrePila,
+    nombrePersonaje = nombrePersonaje;
+}
+
+class DCHeroes{
+  String? nombrePila; String? nombrePersonaje;
+  DCHeroes({required this.nombrePila, required this.nombrePersonaje});
+  DCHeroes.fromDCJson(Map <String,String> json):
+  this.nombrePila = json['nombrePila'] ?? 'No tiene nombre',
+  this.nombrePersonaje = json['nombrePersonaje']?? 'No tiene alias';  
+  @override
+  String toString(){return 'Hola mi nombres ${this.nombrePila} pero me conocen como el caballero de la noche ${this.nombrePersonaje}';}
+  DCHeroes.constructor_adicional({required String nombrePila, required String nombrePersonaje}):
+    nombrePila = nombrePila,
+    nombrePersonaje = nombrePersonaje;
+}
+
+void main(){
+  final ironman = MarvelHeroes.constructor_adicional(nombrePila: 'Tony Stark', nombrePersonaje: 'Ironman');
+  final capitan_america = MarvelHeroes.constructor_adicional(nombrePila: 'Steve Rogers', nombrePersonaje: 'Capitan América');
+  final superman = DCHeroes.constructor_adicional(nombrePila: 'Clark Kent', nombrePersonaje: 'Superman');
+  final flash = DCHeroes.constructor_adicional(nombrePila: 'Barry Hallen', nombrePersonaje: 'Flash');
+  print(ironman.toString());
+  print(capitan_america.toString());
+  print(superman.toString());
+  print(flash.toString());
+}
